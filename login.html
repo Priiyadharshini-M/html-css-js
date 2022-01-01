@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+h1{
+text-align:center;
+}
+body{
+border:solid 3px black;
+width:40%;
+height:600px;
+margin:auto;
+background-color:white;
+}
+div{
+display:flex;
+justify-content:center;
+}
+    i{
+        width:30;
+    }
+img{
+width:500px;
+height:250px;
+}
+    @media(max-width:1000px)
+    {
+        img{
+            width:350px;
+        }
+        body{
+            width:60%;
+        }
+    }
+    @media(max-width:600px)
+    {
+        body{
+            width:75%;
+        }
+        img{
+            width:250px;
+        }
+    }
+#email,#password{
+width:50%;
+box-sizing:border-box;
+height:35px;
+padding:5px;
+border:solid 1px black;
+color:black;
+background-color:#E6E6FA;
+border-radius:10px;
+border-spacing:1px;
+}
+button{
+width:25%;
+box-sizing:border-box;
+height:35px;
+padding:5px;
+border:solid 1px black;
+color:black;
+background-color:blue;
+border-radius:10px;
+border-spacing:1px;
+}
+</style>
+</head>
+<center>
+<body>
+<h1>LOGIN</h1></br>
+<div>
+<img src="https://image.shutterstock.com/image-vector/man-key-near-computer-account-260nw-1499141258.jpg" alt="image not found"></div></br>
+<div class="input-icons">
+<i class="fa fa-user icon"></i>
+<input type="email" name="email" id="email" placeholder="Your Email" required></br></br></div>
+<input type="password" name="password" id="password" placeholder="Password" pattern="[a-zA-Z0-9]{10}" required></br></br>
+<a href="home.html"><button>LOGIN</button></a>
+<p>Don't have an Account?
+<a href="register.html" target="_blank">Sign up</a></p>
+</body>
+</center>
+</html>
