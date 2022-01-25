@@ -1,0 +1,32 @@
+<html>
+    <body>
+        <h3>Before block:</h3>
+    <p id=one>Before block</p><hr>
+    <h3>Inside block:</h3>
+    <p id=two>Inside block</p><hr>
+    <h3>After block:</h3>
+    <p id=three>After block</p>
+
+    <script>
+        var count=5;
+        let age=35;
+        const phno=9123456780;//no redeclaration allowed for variable phno
+        const person={
+            name:"Priiya"//redeclaration of objects in const works!!!
+        };
+        document.getElementById("one").innerHTML="value of count is "+count+" name is "+person.name;
+        if(count<10)
+        {
+            count=10;
+            age=45;
+            person.name="Rahul";//redeclaration of objects in const works!!!
+            let text="use of let";//only accessible inside the block it have declared(let)
+            var temp="hi";//declared and has value temp
+            document.getElementById("two").innerHTML="value of count is "+count+" and value of temp is "+temp+" "+person.name+" and text is "+text+" and age is "+age;
+        }
+            //here variable text is not declared so error
+            //variable temp is declared and has value undefined
+            document.getElementById("three").innerHTML="value of count is "+count+" and value of temp is "+temp+" "+person.name+" text is error and age is "+age;
+    </script>
+    </body>
+</html>
