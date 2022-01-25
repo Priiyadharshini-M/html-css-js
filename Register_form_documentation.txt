@@ -1,0 +1,25 @@
+Create a Registration form with input fields - Name,Phone number,Email Id,Date of birth ,Password,Confirm Password 
+1.Name validation :
+        should contain only alphabets
+        no special chars or any other numbers except space
+        should not contain consecutive repeating letters more than 3
+2.Phone number :
+        contain only 10 digits
+        no special characters and alphabets
+        starts with 6 or 7 or 8 or 9
+3.Email ID :
+        username,domain name same as name validation
+        username minimum length is 3
+        domain min length is 5
+4.Date of birth :
+        should be between age of 18 and 60
+5.Password :
+        shouldbe minimum 5 and maximum 10 characters
+6.Confirm Password:
+        The Password above should match with the confirm password
+7.Creating a class with methods
+8.Seperate method will be defined for each validation
+9.Using onSubmit funtion when the submit event occurs ,the validate method check the errors 
+10.If error occurs, the corresponding error messages are shown.
+11.Once the form is completely validated and the values are correct then the form is submitted and the values entered
+are cleared.
