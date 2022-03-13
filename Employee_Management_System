@@ -1,0 +1,556 @@
+/*Description:To manage the employee details
+  Author name:Priiyadharshini.M
+  Created at:10/10/2021
+  Updated at:26/10/2021
+  Reviewed by:Akshaya
+ */
+package company;
+
+import java.time.*;
+import java.util.regex.Pattern;
+import java.util.*;
+//import java.sql.*;
+
+public class EmployeeDetails
+{
+	Scanner sc=new Scanner(System.in);
+	public static void main(String[] args) throws Exception//Main method
+	{
+		/*String url="jdbc:mysql://localhost:3306/employee_db";
+		String uname="root";
+		String pass="Priiya#2001";
+		String query="insert into employee_db values(?,?,?,?,?,?,?,?,?,?,?)";
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection con=DriverManager.getConnection(url,uname,pass);
+		PreparedStatement st=con.prepareStatement(query);
+		st.setString(1, employeeId);
+		st.executeUpdate();
+		ResultSet rs=st.executeQuery(query);
+		rs.next();
+		//String name= rs.getString();
+		st.close();
+		con.close();*/
+		
+		EmployeeDetails employeeDetails=new EmployeeDetails();
+	    employeeDetails.getEmployeeDetails();
+	}
+	
+	ArrayList<String> employeeIdList=new ArrayList<>();
+	ArrayList<String> employeeNameList=new ArrayList<>();
+	ArrayList<String> employeedob=new ArrayList<>();
+	ArrayList<String> employeePhone=new ArrayList<>();
+	ArrayList<String> employeeEmailId=new ArrayList<>();
+	ArrayList<String> employeedoj=new ArrayList<>();
+	ArrayList<String> employeeDesignation=new ArrayList<>();
+	ArrayList<Double> employeeNetSalary=new ArrayList<>();
+	HashMap<String, ArrayList<String>> employeeList=new HashMap<String, ArrayList<String>>();
+	EmployeeInformation employeeinformation=new EmployeeInformation();
+	//Method to get employee details as input
+	protected Employee getEmployeeDetails() throws Exception
+	{
+		Employee employee=new Employee();
+		System.out.println(String.format("%100s", " Welcome to Aspire Systems"));
+		System.out.println(String.format("%100s", "Employee Management System"));
+		System.out.println("Enter number of employee details to be added:");
+		int noOfEmployeesToBeAdded=sc.nextInt();
+		for(int index=0;index<noOfEmployeesToBeAdded;index++) {
+		System.out.println("Enter Employee Id(like ACE followed by 4 numbers):");
+		String employeeID=sc.next();
+		while(true)
+		{
+			if(Pattern.matches("ACE[0-9]{4}",employeeID)==false) {
+				System.out.println("The ID should start with ACE and should have 4 digits.");
+			    System.out.println("Enter only valid ID:");
+		        employeeID=sc.next();}
+			else if(employeeID.equalsIgnoreCase("ACE0000"))
+			{System.out.println("The employee ID cannot be null.i.e ACE0000");
+			 System.out.println("Enter only valid ID:");
+		     employeeID=sc.next();}
+			else
+				break;
+		}
+		employeeIdList.add(employeeID);
+		sc.nextLine();
+		System.out.println("Enter Employee Name:");
+		String employeeName=sc.nextLine();
+		while(true)
+		{
+			if(Pattern.matches("[a-zA-Z\s]+",employeeName)==false)
+			{
+				System.out.println("The name should contain only alphabets and space.");
+		        System.out.println("Enter valid name:");
+			    employeeName=sc.nextLine();
+			}
+			else if(employeeName.trim().isEmpty() || employeeName==null)
+			{
+				System.out.println("The name should not be empty.");
+		        System.out.println("Enter valid name:");
+		        employeeName=sc.nextLine();
+			}
+			else if(isValidName(employeeName))
+			{
+				System.out.println("The name should not contain same character repeating more than two times.Invalid name.");
+				System.out.println("Enter valid name:");
+		        employeeName=sc.nextLine();
+			}
+			else
+				break;
+		}
+		employeeNameList.add(employeeName);
+		System.out.println("Enter Phone number:");
+		String phoneNo=sc.next();
+		while(true)
+		{
+			if(Pattern.matches("[7896]{1}[0-9]{9}",phoneNo)==true)
+				break;
+			else
+				System.out.println("The phone number is should start with 6 or 7 or 8 or 9 and should contain 10 digits.");
+				System.out.println("The phone number is invalid.Enter valid phone number:");
+			    phoneNo=sc.next();
+		}
+		employeePhone.add(phoneNo);
+		System.out.println("Enter Email Id:");
+		String emailId=sc.next();
+		while(true)
+		{
+			if(Pattern.matches("[a-z0-9]{3,}@[a-z]{3,}.[a-z.]+",emailId)==false)
+				{System.out.println("The email id shouldn't contain any special characters other than @ and numbers after @.");
+			System.out.println("The emailId is invalid.Enter valid EmailId:");
+		    emailId=sc.next();}
+			else if(isValidName(emailId.substring(emailId.indexOf('@'))))
+			{System.out.println("The domain name shouldn't contain same character continuously more than 2 times.");
+			System.out.println("The emailId is invalid.Enter valid EmailId:");
+		    emailId=sc.next();}
+			else if(isValidName(emailId.substring(0,emailId.indexOf('@'))))
+			{System.out.println("The email Id shouldn't contain same character continuously more than 2 times.");
+			System.out.println("The emailId is invalid.Enter valid EmailId:");
+		    emailId=sc.next();}
+			else
+				break;
+		}
+		employeeEmailId.add(emailId);
+		System.out.println("Enter Date of Birth in format yyyy/mm/dd:");
+		String dateOfBirth=sc.next();
+		dateOfBirth=validation(dateOfBirth);
+		employeedob.add(dateOfBirth);
+			System.out.println("Enter Date of Joining in format yyyy/mm/dd:");
+			String dateOfJoin=sc.next();
+			dateOfJoin=validation(dateOfJoin,employeedob.get(index));
+			employeedoj.add(dateOfJoin);
+			System.out.println("Enter PF percentage:");
+			int pfpercentage=sc.nextInt();
+			employee.setSalary(21000);
+			int experience=employee.calculateExperience(employeedoj.get(index));
+			sc.nextLine();
+			System.out.println("Enter designation(Manager,Analyst,Trainer):");
+			String designation=sc.nextLine();
+			while(true)
+			{
+				if(Pattern.matches("[a-zA-Z\s]+",designation)==false)
+				{System.out.println("The designation should contain only alphabets and space.");
+			        System.out.println("Enter valid designation:");
+			        designation=sc.nextLine();}
+				else if(designation.trim().isEmpty() || designation==null)
+				{System.out.println("The designation should not be empty.");
+			        System.out.println("Enter valid designation(Manager,Analyst,Trainer):");
+			        designation=sc.nextLine();}
+				else if(isValidName(designation))
+				{System.out.println("The designation can't have same character continuously more than 2 times.");
+					System.out.println("Enter valid designation(Manager,Analyst,Trainer):");
+					designation=sc.nextLine();}
+				else if(designation.equalsIgnoreCase("manager")||designation.equalsIgnoreCase("analyst")||designation.equalsIgnoreCase("trainer"))
+					break;
+				else
+				{System.out.println("The designation should be Manager or Analyst or Trainer.");
+					System.out.println("Enter valid designation(Manager,Analyst,Trainer):");
+					designation=sc.nextLine();}
+			}
+			employeeDesignation.add(designation);
+			EmployeeInformation employeeinformation=new EmployeeInformation(employeeID,employeeName,designation,dateOfBirth,dateOfJoin,emailId);
+			double netSalary;
+			if(experience>=1)
+			{
+			netSalary=employee.calculateNetSalary(experience,pfpercentage);
+			}
+			else
+			{
+			netSalary=employee.calculateNetSalary(pfpercentage);
+			}
+			employeeNetSalary.add(netSalary);
+		employee.setPhone(employeePhone.get(index));
+		
+		employeeList=employeeinformation.addDetails(employee,employeeIdList,employeeNameList,employeedob,employeePhone,employeeEmailId,employeedoj,employeeDesignation,employeeNetSalary);
+		}
+		//employeeList=employeeinformation.addDetails(employee,employeeIdList,employeeNameList,employeedob,employeePhone,employeeEmailId,employeedoj,employeeDesignation,employeeNetSalary);
+		System.out.println("Enter choice:\n1.Delete any record\n2.Display details\n3.Exit");
+		int choice=sc.nextInt();
+		while(choice!=3)
+		{
+			if(choice==2)
+			{
+				EmployeeInformation employeeInformation=new EmployeeInformation();
+				employeeInformation.showDetails(employeeList);
+				System.out.println("Enter choice:\n1.Delete any record\n2.Display details\n3.Exit");
+				choice=sc.nextInt();
+			}
+			else if(choice==1)
+			{
+				EmployeeInformation employeeInformation=new EmployeeInformation();
+			employeeInformation.deleteDetails(employeeList);
+			System.out.println("Enter choice:\n1.Delete any record\n2.Display details\n3.Exit");
+			choice=sc.nextInt();
+			}
+			else {
+				System.out.println("Invalid choice.");
+				System.out.println("Enter choice:\n1.Delete any record\n2.Display details\n3.Exit");
+				choice=sc.nextInt();
+			}
+		}
+		return employee;
+	}
+	
+	//Method to validate name
+		private static boolean isValidName(String employeeName)
+		{
+			 int employeeNameLength=employeeName.length();
+			 int count=0;
+			 for(int index=0;index<(employeeNameLength-2);index++)
+			 {
+				 if(employeeName.charAt(index)==employeeName.charAt(index+1) && employeeName.charAt(index)==employeeName.charAt(index+2))
+				 {
+					 count=0;
+					 break;
+				 }
+				 else
+				 {
+					 count=1;
+				 }
+			 }
+			 if(count==0)
+			 {
+				 return true;
+			 }
+			 else
+			 {
+				 return false;
+			 }
+		}
+	
+	//Method to validate Date of Birth
+	public String validation(String dateOfBirth)
+	{
+		Employee employee=new Employee();
+		try {
+			while(true)
+			{
+				if(Pattern.matches("[1-2]{1}[90]{1}[0-9]{2}/[0-1]{1}[0-9]{1}/[0-3]{1}[0-9]{1}",dateOfBirth)==false)
+					{System.out.println("Please enter the date of birth in correct pattern yyy/mm/dd:");
+			        dateOfBirth=sc.next();}
+				else if(employee.calculateAge(dateOfBirth)<18 || employee.calculateAge(dateOfBirth)>60)
+					{System.out.println("Age should be greater than 18 and less than 60.");
+				    System.out.println("Please enter the date of birth in correct pattern yyy/mm/dd:");
+				    dateOfBirth=sc.next();}
+				else
+					break;
+			}
+			}
+			catch(DateTimeException datetimeexception)
+			{
+				System.out.println("Months should be from 1 to 12 and days should be according to specific month.");
+				System.out.println("Please enter the date of birth in correct pattern yyy/mm/dd:");
+				dateOfBirth=sc.next();
+				validation(dateOfBirth);
+			}
+		return dateOfBirth;
+	}
+	
+	//Method to validate Date of Joining
+		public String validation(String dateOfJoin, String dateOfBirth)
+		{
+			//Calendar calendar=Calendar.getInstance();
+			try
+			{
+			while(true)
+			{
+				LocalDate doj=LocalDate.of(Integer.parseInt(dateOfJoin.substring(0,4)), Integer.parseInt(dateOfJoin.substring(5,7)), 
+						Integer.parseInt(dateOfJoin.substring(8,10)));
+				LocalDate dob=LocalDate.of(Integer.parseInt(dateOfBirth.substring(0,4)), Integer.parseInt(dateOfBirth.substring(5,7)), 
+						Integer.parseInt(dateOfBirth.substring(8,10)));
+				LocalDate currentDate=LocalDate.now();
+				Period age=Period.between(dob, doj);
+				if(Pattern.matches("[1-2]{1}[90]{1}[0-9]{2}/[0-1]{1}[0-9]{1}/[0-3]{1}[0-9]{1}",dateOfJoin)==false)
+					{System.out.println("Please enter the date of joining in correct pattern yyyy/mm/dd:");
+			        dateOfJoin=sc.next();}
+				//else if(Integer.parseInt(dateOfJoin.substring(5,7))>calendar.get(Calendar.MONTH)+1 && doj.isAfter(currentDate))
+				else if(doj.isAfter(currentDate))
+					{System.out.println("The date of joining can't be in future.");
+				    System.out.println("Please enter the date of joining in correct pattern yyyy/mm/dd:");
+				    dateOfJoin=sc.next();}
+				else if(age.getYears()<18)
+				{System.out.println("The date of joining should atleast be 18 years greater than date of Birth.");
+			    System.out.println("Please enter the date of joining in correct pattern yyyy/mm/dd:");
+			    dateOfJoin=sc.next();}
+				else
+					break;
+			}
+			}
+			catch(DateTimeException datetimeexception)
+			{
+				System.out.println("Months should be from 1 to 12 and days should be according to specific month.");
+				System.out.println("Please enter the date of joining in correct pattern yyy/mm/dd:");
+				dateOfJoin=sc.next();
+				validation(dateOfJoin,dateOfBirth);
+			}
+			return dateOfJoin;
+		}
+	}
+
+package company;
+
+import java.time.Period;
+import java.util.*;
+import java.time.LocalDate;
+
+class Employee extends SalaryAllotment{
+	public Date dob;
+	public String employeeName,employeeId;
+	private double salary;
+	public double netSalary;
+	private String phoneno;
+	
+	//Constructor overloading
+	public Employee(){}
+	public Employee(String employeeId,String employeeName)
+	{
+		this.employeeId=employeeId;
+		this.employeeName=employeeName;
+	}
+	public Employee(String employeeId,String employeeName, double salary)
+	{
+		this(employeeId,employeeName);
+		this.salary=salary;
+	}
+	
+	public String getPhone()//Getter method to get phone number
+	{
+		return this.phoneno;
+	}
+	public double getSalary()//Getter method to get base salary
+	{
+		return this.salary;
+	}
+	public void setPhone(String phoneno)//Setter method to set phone number
+	{
+		this.phoneno=phoneno;
+	}
+	public void setSalary(double salary)//Setter method to set basic salary
+	{
+		this.salary=salary;
+	}
+	public double calculateNetSalary(int pfpercentage)//method to calculate net salary
+	{
+		netSalary=this.salary-(this.salary*pfpercentage/100);
+		return netSalary;
+		
+	}
+	public double calculateNetSalary(int experience, int pfpercentage)
+	{
+		netSalary=this.salary-(this.salary*pfpercentage/100)+(experience*8000);
+		return netSalary;
+		
+	}
+	public int calculateAge(String dateOfBirth)//method to calculate age
+	{
+		LocalDate dob=LocalDate.of(Integer.parseInt(dateOfBirth.substring(0,4)), Integer.parseInt(dateOfBirth.substring(5,7)), 
+				Integer.parseInt(dateOfBirth.substring(8,10)));
+		LocalDate currentDate=LocalDate.now();
+		Period age=Period.between(dob, currentDate);
+		return age.getYears();
+	}
+	public int calculateExperience( String dateOfJoin)//method to calculate experience
+	{
+		LocalDate doj=LocalDate.of(Integer.parseInt(dateOfJoin.substring(0,4)), Integer.parseInt(dateOfJoin.substring(5,7)), 
+				Integer.parseInt(dateOfJoin.substring(8,10)));
+		LocalDate currentDate=LocalDate.now();
+		Period experience=Period.between(doj, currentDate);
+		return experience.getYears();
+	}
+}
+
+package company;
+
+abstract class SalaryAllotment {
+	 abstract int calculateAge(String dateOfBirth);//abstract method to calculate age
+     abstract int calculateExperience(String dateOfJoin);//abstract method to calculate experience
+	 abstract double calculateNetSalary(int experience,int pfpercentage);//abstract method to calculate net salary with experience and pfpercentage
+	 abstract double calculateNetSalary(int pfpercentage);//abstract method to calculate net salary with pfpercentage
+}
+
+package company;
+
+import java.util.*;
+import java.lang.Thread;
+import java.sql.*;
+public class EmployeeInformation extends Employee{
+	static int countofEmp;
+	String designation,dateOfBirth,dateOfJoin,emailId;
+	
+	String url="jdbc:mysql://localhost:3306/employee";
+	String uname="root";
+	String pass="Priiya#2001";
+	
+	public EmployeeInformation(){}
+	public EmployeeInformation(String employeeId,String employeeName, String designation, String dateOfBirth, String dateOfJoin, String emailId)
+	{
+		super(employeeId,employeeName);
+		this.designation=designation;
+		this.dateOfBirth=dateOfBirth;
+		this.dateOfJoin=dateOfJoin;
+		this.emailId=emailId;
+		System.out.println("***************************************************************************************************");
+		System.out.println("Employee Id:"+employeeId);
+		System.out.println("Name:"+employeeName);
+		System.out.println("Date of Birth:"+dateOfBirth);
+		System.out.println("Email Id:"+emailId);
+		System.out.println("Date of Join:"+dateOfJoin);
+		System.out.println("Designation:"+designation);
+		System.out.println("***************************************************************************************************");
+		countofEmp++;
+	}
+	public static int displayCount()//Static method to print count of employees added
+	{
+		return countofEmp;
+	}
+	
+	static String companyName="Aspire Systems";
+	HashMap<String, ArrayList<String>> employeeList = new HashMap<>();
+	
+	//Method to insert the employee details
+	public HashMap<String, ArrayList<String>> addDetails(Employee employee,ArrayList<String> employeeIdList,ArrayList<String> employeeName,ArrayList<String> employeedob,ArrayList<String> employeePhone,
+			ArrayList<String> employeeEmailId,ArrayList<String> employeedoj,ArrayList<String> employeeDesignation,ArrayList<Double> employeeNetSalary) throws Exception
+	{
+		 //HashMap<String, ArrayList<String>> employeeList = new HashMap<>();
+
+		 for(int index=0;index<employeeIdList.size();index++) {
+			 ArrayList<String> details = new ArrayList< String>();
+		 details.add(employeeName.get(index));
+		 details.add(employeedob.get(index));
+		 details.add(String.valueOf(employee.calculateAge(employeedob.get(index))));
+		 employee.setPhone(employeePhone.get(index));
+		 details.add(employee.getPhone());
+		 details.add(employeeEmailId.get(index));
+		 details.add(employeedoj.get(index));
+		 details.add(String.valueOf(employee.calculateExperience(employeedoj.get(index))));
+		 details.add(employeeDesignation.get(index));
+		 details.add(String.valueOf(employee.getSalary()));
+		 details.add(String.valueOf(employeeNetSalary.get(index)));
+
+		 employeeList.put(employeeIdList.get(index),details);
+		 }
+		 for(int index=0;index<employeeIdList.size();index++) {
+			 if(index==employeeIdList.size()-1) {
+		 String query="insert into employee.employee_db values(?,?,?,?,?,?,?,?,?,?,?)";
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con=DriverManager.getConnection(url,uname,pass);
+			PreparedStatement st=con.prepareStatement(query);
+			st.setString(1, employeeIdList.get(index));
+			st.setString(2, employeeName.get(index));
+			st.setString(3, employeedob.get(index));
+			st.setInt(4, employee.calculateAge(employeedob.get(index)));
+			st.setString(5, employeePhone.get(index));
+			st.setString(6, employeeEmailId.get(index));
+			st.setString(7, employeedoj.get(index));
+			st.setInt(8, employee.calculateExperience(employeedoj.get(index)));
+			st.setString(9, employeeDesignation.get(index));
+			st.setDouble(10, employee.getSalary());
+			st.setDouble(11, employeeNetSalary.get(index));
+			
+			st.executeUpdate();
+			 }
+		 }
+			//st.close();
+			//con.close();
+		 
+		 return employeeList;
+	}
+	
+	//Method to display all employee details
+      public void showDetails(HashMap<String, ArrayList<String>> employeeList) {
+		System.out.println("| ----------------------------------------------------------------------------------------------------------EMPLOYEE DETAILS-----------------------------------------------------------------------------------------------------------|");
+		System.out.println("|"+String.format("%-20s","EMPLOYEE ID")+"|"+String.format("%-20s","EMPLOYEE NAME")+" |"+String.format("%-20s","DATE OF BIRTH")+" |"+String.format("%-20s","AGE")
+		+" |"+String.format("%-20s","PHONE NUMBER")+" |"+String.format("%-20s","EMAIL ID")+" |"+String.format("%-20s","DATE OF JOIN")+" |"+String.format("%-20s","EXPERIENCE")
+		+" |"+String.format("%-20s","DESIGNATION")+" |"+String.format("%-20s","BASE SALARY")+" |"+String.format("%-20s","NET SALARY")+" |");
+		System.out.println("|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|");
+		try {
+		Thread.sleep(500);
+		}
+		catch(Exception exception)
+		{
+			System.out.println(exception);
+		}
+		//printing the keys and values(i.e details) stored in hash map
+		for(Map.Entry<String, ArrayList<String>> info:employeeList.entrySet()) {
+			System.out.print(String.format("%-20s",("|"+info.getKey())));
+			for(String details:info.getValue()) {
+				System.out.print(" |"+String.format("%-20s",details));
+			}
+			System.out.print("\n");
+		}
+		System.out.println("\n|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|");
+		System.out.println("Count of employee details added:"+EmployeeInformation.displayCount());
+		System.out.println("Company:"+EmployeeInformation.companyName);	
+		System.out.println("/n");
+	}
+      
+      //Method to delete the employee detail
+	public void deleteDetails(HashMap<String, ArrayList<String>> employeeList) {
+		System.out.println("Enter employee Id to be delete:");
+		Scanner sc=new Scanner(System.in);
+		String Id=sc.next();
+		if(employeeList.containsKey(Id)==false)
+		{
+			try {
+				Thread.sleep(500);
+				}
+				catch(Exception exception)
+				{
+					System.out.println(exception);
+				}
+		}
+		else {
+				employeeList.remove(Id);
+		}
+		
+		Connection connection=null;
+		PreparedStatement preparedStatement=null;
+		try {
+			connection=DriverManager.getConnection(url,uname,pass);
+			preparedStatement=connection.prepareStatement("delete from employee.employee_db where employee_id=?");
+			preparedStatement.setString(1, Id);
+			preparedStatement.executeUpdate();
+			System.out.println(Id+" ID and it's details are deleted.");
+		}
+		catch(Exception exception) {
+			exception.printStackTrace();
+		}
+		finally {
+			if(preparedStatement!=null) {
+				try {
+					preparedStatement.close();
+				}
+				catch(SQLException sqlException){
+					sqlException.printStackTrace();
+				}
+			}
+			if(connection!=null)
+			{
+				try {
+					connection.close();
+				}
+				catch(SQLException sqlException){
+					sqlException.printStackTrace();
+				}
+			}
+		}
+	}
+}
