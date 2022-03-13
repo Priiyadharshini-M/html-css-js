@@ -1,0 +1,61 @@
+h1{
+text-align:center;
+}
+body{
+border:solid 3px black;
+width:40%;
+height:600px;
+margin:auto;
+background-color:white;
+}
+div{
+display:flex;
+justify-content:center;
+}
+    i{
+        width:30;
+    }
+img{
+width:500px;
+height:250px;
+}
+    @media(max-width:1000px)
+    {
+        img{
+            width:350px;
+        }
+        body{
+            width:60%;
+        }
+    }
+    @media(max-width:600px)
+    {
+        body{
+            width:75%;
+        }
+        img{
+            width:250px;
+        }
+    }
+#email,#password{
+width:50%;
+box-sizing:border-box;
+height:35px;
+padding:5px;
+border:solid 1px black;
+color:black;
+background-color:#E6E6FA;
+border-radius:10px;
+border-spacing:1px;
+}
+button{
+width:25%;
+box-sizing:border-box;
+height:35px;
+padding:5px;
+border:solid 1px black;
+color:black;
+background-color:blue;
+border-radius:10px;
+border-spacing:1px;
+}
