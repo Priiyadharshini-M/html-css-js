@@ -1,0 +1,18 @@
+<html>
+    <body>
+        Local Storage
+    <script>
+window.localStorage.setItem("name", "Priiya");
+console.log(localStorage.getItem("name"));
+localStorage.removeItem("name");
+console.log(localStorage.getItem("name"));
+if(typeof window!=='undefined')
+{
+    console.log('browser');
+}
+else{
+    console.log('Server');
+}
+</script>
+</body>
+</html>
