@@ -7,13 +7,9 @@ function * getMarks(){
     yield 30
     console.log("End of function")
  }
- //return an iterator object
     let markIter = getMarks()
- //invoke statements until first yield
     console.log(markIter.next())
- //resume execution after the last yield until second yield expression
     console.log(markIter.next())
- //resume execution after last yield until third yield expression
     console.log(markIter.next())
     console.log(markIter.next()) // iteration is completed;no value is returned
 
