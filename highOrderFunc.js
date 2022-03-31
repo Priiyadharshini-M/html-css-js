@@ -36,7 +36,7 @@ function doubler(x){
 vals.map(doubler);
 console.log(vals);
 let doubled = vals.map(doubler)
-console.log(doubled);//observe the array elements
+console.log(doubled);
 
 vals.fill(0,1,3);
 console.log(vals);
