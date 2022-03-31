@@ -1,3 +1,4 @@
+//array entries
 const names = ["Ravi", "Priiya", "Rahul", "Dharshini"];
 const user = names.entries();
 
@@ -13,3 +14,16 @@ console.log("The first number greater than 18 is "+first+" and is located at ind
 function num(value, index, array) {
   return value > 17;
 }
+
+//object entries
+const object1 = {
+  name: "Priiya",
+  age: 22
+};
+
+for (let [key, value] of Object.entries(object1)){
+  console.log(key+" : "+value);
+}
+console.log(Object.entries(object1));
+console.log(Object.values(object1));
+console.log(Object.keys(object1));
