@@ -1,0 +1,25 @@
+<html>
+  <body>
+    <p id="id1"></p>
+    <script>
+      if (window.DeviceOrientationEvent) {
+    document.write("Device orientation available   ");
+const div1=document.getElementById('id1');
+window.addEventListener("orientationchange", function() {
+  alert(window.orientation);
+  var angle=window.orientation;
+  switch(angle){
+                    case 0:div1.innerHTML="portrait";
+                    break;
+                    case 90:div1.innerHTML="landscape";
+                    break;
+  }
+});
+}
+
+  else {
+    document.write("Sorry, your browser doesn't support Device Orientation");
+  }
+    </script>
+  </body>
+</html>

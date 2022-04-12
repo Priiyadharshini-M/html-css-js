@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p id="result">Stop Watch: </p>
+<p id="output"></p>
+<button onclick="startWorker()">Start</button> 
+<button onclick="stopWorker()">Stop</button>
+<button onclick="print()">Click me</button>
+<script>
+var w;
+function print()
+{
+  document.getElementById("output").innerHTML="Hello!!!";
+  alert("popup");
+}
+function startWorker() {
+  if(typeof(Worker) !== "undefined") {
+    if(typeof(w) == "undefined") {
+      w = new Worker("webWorkers.js");
+    }
+    w.onmessage = function(event) {
+      document.getElementById("result").innerHTML = event.data;
+    };
+  } else {
+    document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Workers...";
+  }
+}
+function stopWorker() { 
+  w.terminate();
+  w = undefined;
+}
+</script>
+
+</body>
+</html>

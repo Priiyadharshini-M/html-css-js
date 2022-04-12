@@ -1,56 +1,58 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Registration Form</title>
+        <title> Register Form</title>
         <link rel="stylesheet" href="register.css">
 </head>
 <body>
 <div>
-<h3>Registration Form</h3>
-<!--<form onsubmit="formvalidation()" >-->
-  <form action="#" class="form">
+  <form id="form_action" method="get" class="form">
 <table>
+    <tr>
+        <td><h3>Registration Form</h3></td>
+    </tr>
 	<tr>
-        <td>Name</td>
-        <td><input type="text" required id="name" placeholder="Enter the name">
+        <td>Name
+        <input type="text" id="name" value="" placeholder="Your Name">
         <span id="username"></span></td>
     </tr>
 	<tr>
-       <td>Phone Number</td>
-	   <td><input type="text" required id="phno" placeholder="Enter the phone number">
+       <td>Phone Number
+	   <input type="text" id="phno" value="" placeholder="Your Phone number">
         <span id="phone"></span></td>
     </tr>
 	<tr>
-        <td>Email Id</td>
-        <td><input type="email" required id="email" placeholder="Enter the email id">
+        <td>Email Id
+        <input type="email" id="email" value="" placeholder="Your Email id">
         <span id="emailid"></span></td>
     </tr>
 	<tr>
-        <td>Date of Birth</td>
-        <td><input type="date" required id="dob">
+        <td>Date of Birth
+        <input type="date" value="" id="dob">
         <span id="db"></span></td>
     </tr>
 	<tr>
-        <td>Gender</td>
-        <td><input type="radio" required name="gender" value="male"> Male
-            <input type="radio" required name="gender" value="female"> Female
-            <input type="radio" required name="gender" value="other"> Other</td>
+        <td>Gender
+        <input type="radio" name="gender" value="male" id="male" checked="true"> Male
+            <input type="radio" name="gender" value="female" id="female"> Female
+            <input type="radio" name="gender" value="other" id="other"> Other
+        <span id="gender"></span></td>
     </tr>
 	<tr>
-        <td>Password</td>
-        <td><input type="password" required id="pwd">
+        <td>Password
+        <input type="password" id="pwd" value="" placeholder="Your Password">
         <span id="pwds"></span></td>
         
     </tr>
     <tr>
-        <td>Confirm Password</td>
-        <td><input type="password" required id="cpwd">
+        <td>Confirm Password
+        <input type="password" id="cpwd" placeholder="Confirm your password">
         <span id="cpwds"></span></td>
         
     </tr>
 	<tr>
-		<td>Course</td>
-		<td><select name="ctype" id="ctype" required>
+		<td>Course
+		<select name="ctype" id="ctype" required>
                             <option>Select course..</option>
                             <option>HTML</option>
                             <option>CSS</option>
@@ -60,12 +62,12 @@
         <span id="course"></span></td>
 	</tr>
 </table>
-<p><input type="checkbox" id="terms" required> I agree to the terms and conditions</p>
+<p><input type="checkbox" id="terms"> I agree to the terms and conditions
+<span id="check"></span></p>
 <p><input type="submit" id="submit" name="submit" value="SUBMIT"/></p>
 
-<!--<div id="result">**Successfully registered</div>-->
 </form>
 </div>
-<script src="register.js"></script>
-</body>
-</html>
+    </body>
+    <script src="register.js"></script>
+    </html>

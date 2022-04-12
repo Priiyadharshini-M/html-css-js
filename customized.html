@@ -1,0 +1,18 @@
+<!doctype html>
+<body>
+<script>
+
+class GreetingsButton extends HTMLButtonElement {
+  constructor() {
+    super();
+    this.addEventListener('click', () => alert("Greetings!"));
+  }
+}
+
+customElements.define('greetings-button', GreetingsButton, {extends: 'button'});
+</script>
+
+<button is="greetings-button">Click me</button>
+
+<button is="greetings-button" disabled>Disabled</button>
+</body>

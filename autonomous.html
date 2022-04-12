@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+    <body>
+        <h1>Custom element</h1>
+        <pro-tag></pro-tag>
+
+ 
+    </body>
+    <script>
+        class customElement extends HTMLElement{
+            constructor(){
+            super();
+            this.innerHTML = "Hello";
+            }
+        }
+        customElements.define("pro-tag",customElement);
+    </script>
+</html>
