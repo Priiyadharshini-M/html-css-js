@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="form_assignment.css">
+        <title>Registration Form</title>
+    </head>
+    <body>
+        <form id="regForm" action="">
+
+            <h2>Registration Form</h2>
+            
+            <div class="tab"><b>PERSONAL DETAILS:</b>
+              <p><input type="text" placeholder="First name... *" id="fuser" oninput="validateName()"><br><span id="fname"></span></p>
+              <p><input type="text" placeholder="Last name... *" id="luser" oninput="validateLname()"><br><span id="lname"></span></p>
+              <p><input type="email" placeholder="Email... *" oninput="validateEmail()" id="email"><br><span id="eid"></span></p>
+              <p><input type="password" placeholder="Password... *" oninput="validatePass()" id="pwd"><br><span id="pid"></span></p>
+              <p><input type="password" placeholder="Confirm password... *" oninput="validateCnfmPass()" id="cpwd"><br><span id="cpid"></span></p>
+            </div>
+            
+            <div class="tab"><b>EXTRA DETAILS:</b>
+              <p><input type="date" placeholder="Date Of Birth..." onblur="validatedob()" id="dob"><br><span id="dobid"></span></p>
+              <p><input type="radio" name="gender" id="male" value="male"> Male
+                <input type="radio" name="gender" id="female" value="female"> Female
+                <input type="radio" name="gender" id="others" value="others"> Others<br><span id="genderid"></span></p>
+              <p><input type="number" placeholder="Mobile Number... *" oninput="validatePhone()" id="phone"><br><span id="phid"></span></p>
+              <p><textarea placeholder="Address.."></textarea></p>
+              <p><select name="stype" id="state">
+                <option>Select State..</option>
+                <option>AndraPradesh</option>
+                <option>Mumbai</option>
+                <option>Punjab</option>
+                <option>Tamil Nadu</option>
+            </select><br><span id="stateid"></span></p>
+            </div>
+            
+            <div class="tab"><b>EDUCATION:</b>
+                <!-- <p><select multiple name="depttype" id="depttype" required oninput="validateDegree()" id="degree">
+                    <option>Select degree..</option>
+                    <option>Bachelor of engineering</option>
+                    <option>BSc</option>
+                    <option>MBA</option>
+                    <option>Msc</option>
+                    <option>ME</option>
+                    <option>Phd</option>
+                    <option>B.Ed</option>
+                </select><br><span id="degreeid"></span></p> -->
+                <table class="form">
+                <tr><td>Tick Check box</td><p><td>Degree</td>  <td>Year_of_Passing</p></tr></td></tr>
+                <tr><td><p ><input type="checkbox" value="BE" id="be" onclick="enable(this)"></td><td>>B.E</td> <td><input type="text" class="yearofpass" placeholder="MM/YYYY" oninput="validateYOP()" id="BEyop" disabled="true"><br><span id="yopid"></span></p></td></tr>
+                <tr><td><p ><input type="checkbox" value="BSc" id="bsc" onclick="enable(this)"></td><td>BSc</td> <td><input type="text" class="yearofpass" placeholder="MM/YYYY" oninput="validateYOP()" id="BScyop" disabled="true"><br><span id="yopid"></span></p></td></tr>
+                <tr><td><p ><input type="checkbox" value="MBA" id="mba" onclick="enable(this)"></td><td>MBA</td> <td><input type="text" class="yearofpass" placeholder="MM/YYYY" oninput="validateYOP()" id="MBAyop" disabled="true"><br><span id="yopid"></span></p></td></tr>
+                <tr><td><p ><input type="checkbox" value="MSc" id="msc" onclick="enable(this)"></td><td>MSc</td> <td><input type="text" class="yearofpass" placeholder="MM/YYYY" oninput="validateYOP()" id="MScyop" disabled="true"><br><span id="yopid"></span></p></td></tr>
+                <tr><td><p ><input type="checkbox" value="ME" id="me" onclick="enable(this)"></td><td>ME</td> <td><input type="text" class="yearofpass" placeholder="MM/YYYY" oninput="validateYOP()" id="MEyop" disabled="true"><br><span id="yopid"></span></p></td></tr>
+                <tr><td><p ><input type="checkbox" value="Phd" id="phd" onclick="enable(this)"></td><td>Phd</td> <td><input type="text" class="yearofpass" placeholder="MM/YYYY" oninput="validateYOP()" id="Phdyop" disabled="true"><br><span id="yopid"></span></p></td></tr>
+                <tr><td><p ><input type="checkbox" value="BEd" id="bed" onclick="enable(this)"></td><td>B.Ed</td> <td><input type="text" class="yearofpass" placeholder="MM/YYYY" oninput="validateYOP()" id="BEdyop"disabled="true"><br><span id="yopid"></span></p></td></tr>
+                <!-- <p><input type="text" placeholder="MM/YYYY" oninput="validateYOP()" id="yop"><br><span id="yopid"></span></p> -->
+              </table>
+              </div>
+            
+            <div class="tab"><b>WORK INFO:</b>
+                <p><input type="radio"  name="pract" value="manager"> Manager
+                    <input type="radio" name="pract" value="team lead"> Team Lead
+                    <input type="radio" name="pract" value="analyst"> Analyst</p>
+              <p><input type="number" placeholder="Overall Years of Experience..."></p>
+            </div>
+
+            <div class="tab"><b>TEAM DETAILS:</b>
+                <p><select name="teamtype" id="practice">
+                    <option>Select Practice..</option>
+                    <option>LAMP</option>
+                    <option>Dotnet</option>
+                    <option>Oracle</option>
+                    <option>BFS</option>
+                </select><br><span id="practiceid"></span></p>
+                <p><input type="checkbox" id="check" required > I agree to the terms and conditions<br><span id="checkid"></span></p>
+            </div>
+
+            <div class="tab"><b>REGISTETRED</b>
+            <p id="complete"><b>THANK YOU!!! Your registration has completed successfully</b></p></div>
+            
+            <div style="overflow:auto;">
+              <div style="float:right;">
+                <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+              </div>
+            </div>
+            
+            <div style="text-align:center;margin-top:40px;">
+              <span class="step"></span>
+              <span class="step"></span>
+              <span class="step"></span>
+              <span class="step"></span>
+              <span class="step"></span>
+              <span class="step"></span>
+            </div>
+            
+            </form>
+    </body>
+    <script src="form_assignment.js"></script>
+</html>
