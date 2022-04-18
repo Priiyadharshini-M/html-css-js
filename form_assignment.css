@@ -1,4 +1,3 @@
-/* Style the form */
 *{
     background-image: url("registerass.jpeg");
     background-repeat: no-repeat;
@@ -30,17 +29,15 @@
       padding:7px;
       border: 4px solid #aaaaaa;
   }
-  /* Style the input fields */
+  
   input,select{
     padding: 10px;
     width: 70%;
     font-size: 17px;
     font-weight: 300;
-    /* font-family: Raleway; */
     border: 4px solid #aaaaaa;
     border-radius: 15px;
     background-image: none;
-    /* opacity: 0.6; */
   }
   select{
     width: 75%;
@@ -61,7 +58,7 @@
       background-image: none;
       /*background-color: (210, 214, 215);*/
   }
-  /* Mark input boxes that gets an error on validation: */
+  
   input.invalid {
     background-color: #ffdddd;
     border: 4px solid red;
@@ -78,12 +75,10 @@
   .yearofpass{
     width: 50%;
   }
-  /* Hide all steps by default: */
    .tab {
     display: none;
   } 
   
-  /* Make circles that indicate the steps of the form: */
   .step {
     height: 15px;
     width: 15px;
@@ -95,12 +90,10 @@
     opacity: 0.5;
   }
   
-  /* Mark the active step: */
   .step.active {
     opacity: 2;
   }
   
-  /* Mark the steps that are finished and valid: */
   .step.finish {
     background-color: #045235;
   }
