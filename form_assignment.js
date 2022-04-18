@@ -1,18 +1,5 @@
-var currentTab = 0;
-//var j=0; // Current tab is set to be the first tab (0)
-showTab(currentTab); // Display the current tab
-// var genderMale=document.getElementById("male").value;
-// var genderFemale=document.getElementById("female").value;
-// var genderOthers=document.getElementById("others").value;
-// let valuee;
-// if(document.getElementById("bsc").checked)
-// {
-//   valuee=document.getElementById("bsc").value;
-// }
-// if(document.getElementById("bsc").checked)
-// {
-//   valuee=document.getElementById("bsc").value;
-// }
+var currentTab = 0; 
+showTab(currentTab); 
 const nameregex=/^[a-zA-Z ]{3,15}$/;
 const lnameregex=/^[a-zA-Z ]{0,15}$/;
 const emailregex=/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]{2,3}$/;
@@ -21,10 +8,8 @@ const phnregex=/[6-9]\d{9}/;
 const yopregex=/[0-1]{1}[0-9]{1}\/[1-2]{1}[09]{1}[0129]{1}[0-9]{1}/
 
 function showTab(n) {
-  // This function will display the specified tab of the form ...
   var x = document.getElementsByClassName("tab");
   x[n].style.display = "block";
-  // ... and fix the Previous/Next buttons:
   if (n == 0) {
     document.getElementById("prevBtn").style.display = "none";
   } else {
@@ -36,28 +21,19 @@ function showTab(n) {
   } else {
     document.getElementById("nextBtn").innerHTML = "Next";
   }
-  // ... and run a function that displays the correct step indicator:
   fixStepIndicator(n)
 }
 
 function nextPrev(n) {
-  // This function will figure out which tab to display
   var x = document.getElementsByClassName("tab");
-  // Exit the function if any field in the current tab is invalid:
   if (n == 1 && !validateForm()) {return true;}
-  //else if(n==1 && validateForm(j)) {j=j+1;}
-  // Hide the current tab:
-  //else if(n!=1 && validateForm(j+1))
   x[currentTab].style.display = "none";
-  // Increase or decrease the current tab by 1:
   currentTab = currentTab + n;
-  // if you have reached the end of the form... :
+  
   if (currentTab >= x.length) {
-    //...the form gets submitted:
     document.getElementById("regForm").submit();
     return false;
   }
-  // Otherwise, display the correct tab:
   showTab(currentTab);
 }
 function validateName()
@@ -256,13 +232,10 @@ function validatePractice(){
 }
     }
 function validateForm() {
-  // This function deals with validation of the form fields
-  var x, y, i, valid = true;
-  x = document.getElementsByClassName("tab");
-  y = x[currentTab].getElementsByTagName("input");
-  // A loop that checks every input field in the current tab:
-  //  for (i = j; i < y.length; i++) {
-    // If a field is empty...
+  //var x, y, i, 
+  var valid = true;
+//   x = document.getElementsByClassName("tab");
+//   y = x[currentTab].getElementsByTagName("input");
     if(currentTab==0){
     if (!validateName()||!validateLname()||!validateEmail()||!validatePass()
     ||!validateCnfmPass()) {
@@ -294,24 +267,18 @@ function validateForm() {
         return valid;
       }
     }
-    // else{
-    //     y[i].className += "";
-    // }
-  //}
-  // If the valid status is true, mark the step as finished and valid:
+  
   if (valid) {
     document.getElementsByClassName("step")[currentTab].className += " finish";
   }
-  return valid; // return the valid status
+  return valid;
 }
 
 function fixStepIndicator(n) {
-  // This function removes the "active" class of all steps...
   var i, x = document.getElementsByClassName("step");
   for (i = 0; i < x.length; i++) {
     x[i].className = x[i].className.replace(" active", "");
   }
-  //... and adds the "active" class to the current step:
   x[n].className += " active";
 }
 function calculateAge(dob)
