@@ -13,20 +13,20 @@
             <h2>Registration Form</h2>
             
             <div class="tab"><b>PERSONAL DETAILS:</b>
-              <p><input type="text" placeholder="First name..." id="fuser" oninput="validateName()"><br><span id="fname"></span></p>
-              <p><input type="text" placeholder="Last name..." id="luser" oninput="validateLname()"><br><span id="lname"></span></p>
-              <p><input type="email" placeholder="Email..." oninput="validateEmail()" id="email"><br><span id="eid"></span></p>
-              <p><input type="password" placeholder="Password..." oninput="validatePass()" id="pwd"><br><span id="pid"></span></p>
-              <p><input type="password" placeholder="Confirm password..." oninput="validateCnfmPass()" id="cpwd"><br><span id="cpid"></span></p>
+              <p><input type="text" placeholder="First name... *" id="fuser" oninput="validateName()"><br><span id="fname"></span></p>
+              <p><input type="text" placeholder="Last name... *" id="luser" oninput="validateLname()"><br><span id="lname"></span></p>
+              <p><input type="email" placeholder="Email... *" oninput="validateEmail()" id="email"><br><span id="eid"></span></p>
+              <p><input type="password" placeholder="Password... *" oninput="validatePass()" id="pwd"><br><span id="pid"></span></p>
+              <p><input type="password" placeholder="Confirm password... *" oninput="validateCnfmPass()" id="cpwd"><br><span id="cpid"></span></p>
             </div>
             
             <div class="tab"><b>EXTRA DETAILS:</b>
               <p><input type="date" placeholder="Date Of Birth..." onblur="validatedob()" id="dob"><br><span id="dobid"></span></p>
-              <p><input type="radio" name="gender" id="male" value="male" checked="true"> Male
+              <p><input type="radio" name="gender" id="male" value="male"> Male
                 <input type="radio" name="gender" id="female" value="female"> Female
                 <input type="radio" name="gender" id="others" value="others"> Others<br><span id="genderid"></span></p>
-              <p><input type="number" placeholder="Mobile Number..." oninput="validatePhone()" id="phone"><br><span id="phid"></span></p>
-              <p><input type="textarea" placeholder="Adress..."></p>
+              <p><input type="number" placeholder="Mobile Number... *" oninput="validatePhone()" id="phone"><br><span id="phid"></span></p>
+              <p><textarea placeholder="Address.."></textarea></p>
               <p><select name="stype" id="state">
                 <option>Select State..</option>
                 <option>AndraPradesh</option>
@@ -61,14 +61,14 @@
               </div>
             
             <div class="tab"><b>WORK INFO:</b>
-                <p><input type="radio"  name="pract" value="male"> Manager
-                    <input type="radio" name="pract" value="female"> Team Lead
-                    <input type="radio" name="pract" value="other"> Analyst</p>
+                <p><input type="radio"  name="pract" value="manager"> Manager
+                    <input type="radio" name="pract" value="team lead"> Team Lead
+                    <input type="radio" name="pract" value="analyst"> Analyst</p>
               <p><input type="number" placeholder="Overall Years of Experience..."></p>
             </div>
 
             <div class="tab"><b>TEAM DETAILS:</b>
-                <p><select name="teamtype" id="teamtype" required oninput="validatePractice()" id="practice">
+                <p><select name="teamtype" id="practice">
                     <option>Select Practice..</option>
                     <option>LAMP</option>
                     <option>Dotnet</option>
@@ -77,6 +77,9 @@
                 </select><br><span id="practiceid"></span></p>
                 <p><input type="checkbox" id="check" required > I agree to the terms and conditions<br><span id="checkid"></span></p>
             </div>
+
+            <div class="tab"><b>REGISTETRED</b>
+            <p id="complete"><b>THANK YOU!!! Your registration has completed successfully</b></p></div>
             
             <div style="overflow:auto;">
               <div style="float:right;">
@@ -86,7 +89,8 @@
             </div>
             
             <div style="text-align:center;margin-top:40px;">
-              <span class="step" id="test"></span>
+              <span class="step"></span>
+              <span class="step"></span>
               <span class="step"></span>
               <span class="step"></span>
               <span class="step"></span>

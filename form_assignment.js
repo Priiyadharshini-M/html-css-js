@@ -15,19 +15,25 @@ function showTab(n) {
   } else {
     document.getElementById("prevBtn").style.display = "inline";
   }
-  if (n == (x.length - 1)) {
+  if (n == (x.length - 2)) {
     document.getElementById("nextBtn").innerHTML = "Submit";
     //document.getElementById("nextBtn").value="Submit";
   } else {
     document.getElementById("nextBtn").innerHTML = "Next";
+  }
+  if(n==(x.length-1)){
+    //   document.getElementById("nextBtn").style.display="none";
+      document.getElementById("prevBtn").style.display="none";
   }
   fixStepIndicator(n)
 }
 
 function nextPrev(n) {
   var x = document.getElementsByClassName("tab");
-  if (n == 1 && !validateForm()) {return true;}
+  if (n == 1 && !validateForm()) {return false;}
   x[currentTab].style.display = "none";
+//   console.log("length"+x.length);
+//   console.log(currentTab);
   currentTab = currentTab + n;
   
   if (currentTab >= x.length) {
@@ -134,9 +140,9 @@ function validatedob()
    return bool;
 }
 function validateGender(){
-let genderMale=document.getElementById("male").value;
-let genderFemale=document.getElementById("female").value;
-let genderOthers=document.getElementById("others").value;
+let genderMale=document.getElementById("male").checked;
+let genderFemale=document.getElementById("female").checked;
+let genderOthers=document.getElementById("others").checked;
 if(genderMale==false && genderFemale==false && genderOthers==false){
     document.getElementById("genderid").innerHTML="Please select one of the options"
     bool=false;
@@ -206,7 +212,7 @@ function validatePhone()
 //   return bool;
 // }
 function validatePractice(){
-    if(document.getElementById("practice")=="Select Practice..")
+    if(document.getElementById("practice").value=="Select Practice..")
     {
     document.getElementById("practiceid").innerHTML=" ** Select your practice";
     document.getElementById("practice").style.border="4px solid red";
@@ -230,6 +236,7 @@ function validatePractice(){
       document.getElementById("checkid").innerHTML=""
       bool=true;
 }
+return bool;
     }
 function validateForm() {
   //var x, y, i, 
@@ -242,15 +249,14 @@ function validateForm() {
       // add an "invalid" class to the field:
       // and set the current valid status to false:
       valid = false;
-      return valid;
+      //return valid;
     }
     }
     else if(currentTab==1){
-      document.getElementById("test").innerHTML=currentTab;
       if(!validatedob()||!validateGender()||!validateState()||!validatePhone())
       {
         valid=false;
-        return valid;
+        //return valid;
       }
     }
     // else if(currentTab==2){
@@ -264,7 +270,7 @@ function validateForm() {
       if(!validatePractice()||!validatecheck())
       {
         valid=false;
-        return valid;
+        //return valid;
       }
     }
   
