@@ -1,0 +1,32 @@
+html
+    - var demo="Thanks for watching"
+    head 
+        title Express Js
+        style 
+            include login.css
+            //-to include css or js files
+    body 
+        h1.democlass Welcome to learning 
+        //- <h1 class=democlass>
+        p#demoid Continue the exploring
+        //- <p id=demoid>
+        a(href="https://www.youtube.com/user/SonyMusicSouthVEVO") Click here
+        ul 
+            each val in ['MongoDb','Node js','Express','React']
+                //-like for loop...put in list
+                li=val 
+        div 
+            if(user)
+                h1 Hii #{user.name}
+        div 
+            input(
+                type="text"
+                placeholder="Enter name")
+        div 
+            //-gets quotes and written value from express file
+            h1=quotes 
+            h2=written 
+        div 
+            //-inline css
+            h1(style={color:"blue"}) Come again #{demo}
+            //-or h1=demo
